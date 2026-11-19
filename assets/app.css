@@ -166,5 +166,14 @@ input.blank.half{border-color:var(--half);background:#fff6df;color:#a77400}
 .navpn a:hover{border-color:var(--c)}
 .foot{color:var(--sub);font-size:12.5px;text-align:center;padding:26px 0 90px}
 .note{font-size:13px;color:var(--sub);background:#fff;border:1px dashed var(--line);border-radius:12px;padding:10px 14px;margin:14px 0}
+.chead{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.chead h2{margin:0;flex:1;min-width:220px}
+.tgs{display:flex;gap:6px}
+.tg{border:1px solid var(--line);background:#fff;border-radius:10px;padding:7px 13px;font-size:13px;font-weight:700;color:var(--sub);white-space:nowrap}
+.tg.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+body.hide-mn .vw .ko,body.hide-ko .exs .ko{filter:blur(6px);cursor:pointer;user-select:none;transition:filter .15s}
+body.hide-mn .vw .ko.peek,body.hide-ko .exs .ko.peek{filter:none}
+.hidehint{display:none;font-size:12.5px;color:var(--sub);margin:-4px 0 10px}
+body.hide-mn #voc .hidehint,body.hide-ko #ex .hidehint{display:block}
 @media (max-width:640px){.wrap{padding:0 14px}.drill{padding:16px}.opt{min-width:0;flex:1 1 100%}.bh .go{display:none}.navpn a{max-width:100%}.crumb{display:none}}
 @media print{.top,.sum,.vpanel,.df,.spk,.mini,.play{display:none!important}}

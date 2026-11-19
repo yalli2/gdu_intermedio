@@ -415,5 +415,23 @@
     q.oninput = run;
     $$(".cat").forEach(c => (c.onclick = () => { $$(".cat").forEach(x => x.classList.remove("on")); c.classList.add("on"); run(); }));
   }
-  document.addEventListener("DOMContentLoaded", () => { initSettings(); initPage(); initProgress(); initSearch(); });
+  /* ---- 뜻 가리기 · 해석 가리기 (상태는 다른 단원에서도 유지) */
+  function initHide() {
+    const tgs = $$("[data-hide]"); if (!tgs.length) return;
+    const st = store.get("dain:hide", { mn: false, ko: false });
+    const apply = () => {
+      document.body.classList.toggle("hide-mn", !!st.mn); document.body.classList.toggle("hide-ko", !!st.ko);
+      tgs.forEach(b => b.classList.toggle("on", !!st[b.dataset.hide]));
+      $$(".peek").forEach(e => e.classList.remove("peek"));
+    };
+    tgs.forEach(b => (b.onclick = () => { st[b.dataset.hide] = !st[b.dataset.hide]; store.set("dain:hide", st); apply(); }));
+    document.addEventListener("click", e => {
+      const k = e.target.closest(".vw .ko, .exs .ko"); if (!k) return;
+      const hidden = (k.closest(".vw") && st.mn) || (k.closest(".exs") && st.ko);
+      if (hidden) k.classList.toggle("peek");
+    });
+    ["#voc", "#ex"].forEach(id => { const c = $(id); if (c) c.querySelector(".chead").insertAdjacentHTML("afterend", '<div class="hidehint">💡 가려진 부분을 누르면 하나씩 확인할 수 있어요. 먼저 스스로 뜻을 떠올려 보세요!</div>'); });
+    apply();
+  }
+  document.addEventListener("DOMContentLoaded", () => { initSettings(); initPage(); initProgress(); initSearch(); initHide(); });
 })();
